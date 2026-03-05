@@ -49,12 +49,10 @@ Thumbs.db
 # AI tool configs
 CLAUDE.md
 AGENTS.md
+IMPLEMENTATION-PLAN.md
 .claude/
 .codex/
 .gemini/
 .opencode/
 opencode.json
 .env
-
-# other files
-IMPLEMENTATION-PLAN.md
