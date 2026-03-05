@@ -1,105 +1,265 @@
-# New Nx Repository
+# @showcase/ui — Angular Component Library
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+[![CI & Deploy](https://github.com/jayampathiw/angular-component-library/actions/workflows/ci.yml/badge.svg)](https://github.com/jayampathiw/angular-component-library/actions)
+[![Angular](https://img.shields.io/badge/Angular-21-dd0031?logo=angular&logoColor=white)](https://angular.dev)
+[![Storybook](https://img.shields.io/badge/Storybook-10-ff4785?logo=storybook&logoColor=white)](https://jayampathiw.github.io/angular-component-library)
+[![Nx](https://img.shields.io/badge/Nx-22-143055?logo=nx&logoColor=white)](https://nx.dev)
+[![Tests](https://img.shields.io/badge/Tests-224_passing-brightgreen)](https://github.com/jayampathiw/angular-component-library)
+[![Coverage](https://img.shields.io/badge/Coverage-98%25_Statements-brightgreen)](https://github.com/jayampathiw/angular-component-library)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+A production-ready, enterprise-grade Angular component library with **20 reusable components**, comprehensive Storybook documentation, and a full demo application showcasing real-world usage.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-## Try the full Nx platform
-🚀 If you haven't connected to Nx Cloud yet, [complete your setup here](https://cloud.nx.app/setup/connect-workspace/guide). Get faster builds with remote caching, distributed task execution, and self-healing CI. [See how your workspace can benefit](#nx-cloud).
-## Generate a library
+**[Live Demo App](https://angular-component-library.vercel.app/dashboard)** · **[Storybook](https://jayampathiw.github.io/angular-component-library)** · **[GitHub](https://github.com/jayampathiw/angular-component-library)**
 
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
+---
+
+## Screenshots
+
+### Demo App — Dashboard
+![Dashboard](docs/screenshots/demo-dashboard.png)
+
+### Demo App — Component Catalog
+![Component Catalog](docs/screenshots/demo-components.png)
+
+### Storybook — Interactive Docs
+![Storybook](docs/screenshots/storybook.png)
+
+> Screenshots live in `docs/screenshots/`. To update, take new captures and replace the images.
+
+---
+
+## Highlights
+
+- **20 components** across 5 categories — Layout, Navigation, Data Display, Form Controls, Feedback
+- **Angular 21** with Signals, standalone components, and new control flow (`@if`, `@for`, `@switch`)
+- **Design token system** with light/dark theme support via CSS custom properties
+- **98% test coverage** — 224 tests across 20 test suites
+- **Storybook 10** — interactive docs with Controls, Docs, and a11y addon
+- **Nx 22 monorepo** — publishable library (`@showcase/ui`) + demo app
+- **CI/CD** — GitHub Actions for lint/test/build + auto-deploy Storybook to GitHub Pages
+- **WCAG 2.1 AA** — keyboard navigation, ARIA labels, focus management
+
+---
+
+## Component Catalog
+
+| Category | Components |
+|----------|-----------|
+| **Layout** | Container, Grid, Card, Divider |
+| **Navigation** | Breadcrumbs, Tabs, Stepper |
+| **Data Display** | Data Table, Badge, Avatar, Skeleton, Stat Card, Empty State, Progress Bar |
+| **Form Controls** | Input, Select, Textarea |
+| **Feedback** | Toast, Modal, Confirm Dialog |
+
+---
+
+## Architecture
+
+```mermaid
+graph TB
+    subgraph "Nx Monorepo"
+        subgraph "libs/ui"
+            LIB["@showcase/ui<br/>20 Components"]
+            TOKENS["Design Tokens<br/>Colors · Typography · Spacing"]
+            STORIES["Storybook Stories<br/>21 story files"]
+            TESTS["Jest Tests<br/>224 tests · 98% coverage"]
+        end
+
+        subgraph "apps/demo"
+            DEMO["Demo App<br/>5 pages · Real-world usage"]
+            SHELL["App Shell<br/>Sidebar · Header · Theme"]
+            PAGES["Pages<br/>Dashboard · Team · Projects<br/>Settings · Component Catalog"]
+        end
+
+        LIB --> DEMO
+        TOKENS --> LIB
+    end
+
+    subgraph "Deployment"
+        GHP["GitHub Pages<br/>Storybook"]
+        VERCEL["Vercel<br/>Demo App"]
+    end
+
+    STORIES --> GHP
+    DEMO --> VERCEL
+
+    style LIB fill:#dd0031,color:#fff
+    style TOKENS fill:#7b1fa2,color:#fff
+    style DEMO fill:#1976d2,color:#fff
+    style GHP fill:#222,color:#fff
+    style VERCEL fill:#000,color:#fff
 ```
 
-## Run tasks
+---
 
-To build the library use:
+## Tech Stack
 
-```sh
-npx nx build pkg1
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | Angular 21 (Signals, Standalone, New Control Flow) |
+| **Monorepo** | Nx 22 |
+| **Component Dev** | Storybook 10 (CSF3 + Docs + a11y addon) |
+| **Styling** | SCSS + Design Token system (CSS custom properties) |
+| **Testing** | Jest 30 + jest-preset-angular (zoneless) |
+| **Linting** | ESLint 9 + Angular ESLint + Prettier |
+| **CI/CD** | GitHub Actions → GitHub Pages (Storybook) + Vercel (Demo) |
+| **Package** | ng-packagr (publishable Angular library) |
+
+---
+
+## Demo App Pages
+
+The demo app (`apps/demo/`) showcases the library in a realistic "Acme HQ" admin panel:
+
+| Page | Components Used | What It Demonstrates |
+|------|----------------|---------------------|
+| **Dashboard** | StatCard, Grid, Card, ProgressBar, Avatar, Badge, Skeleton, Divider | KPI cards, activity feed, project progress, skeleton loading states |
+| **Team** | Avatar, Badge, Input, Select, Modal, ConfirmDialog, EmptyState, Container | Search & filter, CRUD modals, confirmation dialogs, empty states |
+| **Projects** | Card, Grid, Stepper, ProgressBar, Badge, Avatar, Divider | Project cards, workflow stepper, progress tracking |
+| **Settings** | Tabs, Input, Select, Textarea, Card, Divider, Container | Tabbed forms, theme toggle, profile editing |
+| **Component Catalog** | All 20 components | Complete reference of every component with variants |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- pnpm 10+
+
+### Installation
+
+```bash
+git clone https://github.com/jayampathiw/angular-component-library.git
+cd angular-component-library
+pnpm install
 ```
 
-To run any task with Nx use:
+### Development
 
-```sh
-npx nx <target> <project-name>
+```bash
+# Start the demo app (http://localhost:4200)
+pnpm start
+
+# Start Storybook (http://localhost:4400)
+pnpm storybook
+
+# Run tests
+pnpm test
+
+# Run tests with coverage
+pnpm nx test ui --coverage
+
+# Lint
+pnpm lint
+
+# Build the library
+pnpm build
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
+## Project Structure
 
 ```
-npx nx release
+angular-component-library/
+├── apps/
+│   └── demo/                    # Demo application (Acme HQ)
+│       └── src/app/
+│           ├── pages/           # Dashboard, Team, Projects, Settings, Catalog
+│           └── shared/          # Layout (sidebar, header), services, mock data
+├── libs/
+│   └── ui/                      # @showcase/ui — publishable library
+│       └── src/
+│           ├── lib/             # 20 components (each: .ts, .scss, .spec.ts, .stories.ts)
+│           └── styles/          # Design tokens, theme, global styles
+├── .github/workflows/ci.yml    # CI + Storybook deploy to GitHub Pages
+├── .storybook/                  # Storybook root config
+├── vercel.json                  # Demo app deployment config
+└── nx.json                      # Nx workspace config
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+---
 
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Design Token System
 
-## Keep TypeScript project references up to date
+All components use semantic design tokens via CSS custom properties — no hardcoded colors:
 
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
+```scss
+// Colors
+--ui-color-primary
+--ui-color-on-primary
+--ui-color-surface
+--ui-color-surface-container
+--ui-color-on-surface
+--ui-color-error
+--ui-color-success
+--ui-color-warning
 
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
+// Typography
+--ui-font-family
+--ui-font-size-sm / md / lg
 
-```sh
-npx nx sync
+// Spacing
+--ui-spacing-xs / sm / md / lg / xl
+
+// Shape
+--ui-radius-sm / md / lg / xl
 ```
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
+Light/dark theme switches automatically via `[data-theme="dark"]` attribute — all tokens update, zero component changes needed.
 
-```sh
-npx nx sync:check
-```
+---
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+## Quality Metrics
 
-## Nx Cloud
+| Metric | Value |
+|--------|-------|
+| Components | 20 |
+| Test Suites | 20 (+ 1 demo) |
+| Total Tests | 224 |
+| Statement Coverage | 98.36% |
+| Branch Coverage | 88.31% |
+| Line Coverage | 100% |
+| Storybook Stories | 21 files |
+| Bundle Size (library) | Tree-shakeable per-component |
 
-Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+---
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Key Patterns Demonstrated
 
-### Set up CI (non-Github Actions CI)
+This project showcases modern Angular patterns that enterprise clients look for:
 
-**Note:** This is only required if your CI provider is not GitHub Actions.
+| Pattern | Where Used | Example |
+|---------|-----------|---------|
+| **Signal Inputs** (`input()`, `input.required()`) | All 20 components | `readonly variant = input<Variant>('default')` |
+| **Signal Outputs** (`output()`) | Toast, Modal, ConfirmDialog, Badge | `readonly dismissed = output<void>()` |
+| **Two-Way Binding** (`model()`) | Input, Select, Textarea, Modal | `readonly value = model<string>('')` |
+| **Computed Signals** (`computed()`) | Host classes, filtered data | `readonly hostClasses = computed(() => ...)` |
+| **OnPush Change Detection** | All components | `changeDetection: ChangeDetectionStrategy.OnPush` |
+| **Standalone Components** | All components (zero NgModules) | `standalone: true` with explicit imports |
+| **New Control Flow** | All templates | `@if`, `@for` with `track`, `@switch` |
+| **`inject()` Function** | Services, router, document | `private readonly router = inject(Router)` |
+| **Design Token Architecture** | SCSS token system | CSS custom properties with light/dark themes |
+| **Host Element Binding** | Component styling | `host: { class: 'ui-badge', '[class]': 'hostClasses()' }` |
+| **Content Projection** | Card, Modal, Tabs | `<ng-content select="[card-header]" />` |
+| **Publishable Library** | Nx + ng-packagr | Tree-shakeable FESM2022 bundles |
+| **Zoneless Testing** | Jest setup | `setupZonelessTestEnv()` with signal-based tests |
 
-Use the following command to configure a CI workflow for your workspace:
+---
 
-```sh
-npx nx g ci-workflow
-```
+## Author
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**Jayampathy Wijesena** — Senior Angular Developer
 
-## Install Nx Console
+- Portfolio: [jayampathiw.github.io/Portfolio](https://jayampathiw.github.io/Portfolio)
+- LinkedIn: [linkedin.com/in/jayampathy-wijesena](https://linkedin.com/in/jayampathy-wijesena)
+- GitHub: [github.com/jayampathiw](https://github.com/jayampathiw)
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+---
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## License
 
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+[MIT](LICENSE)

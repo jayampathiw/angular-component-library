@@ -1,7 +1,8 @@
 # Angular Component Library — Implementation Plan
 
 > **Created**: March 5, 2026
-> **Status**: ~80% Complete — Components Done, Deployment Pending
+> **Last Updated**: March 5, 2026
+> **Status**: ~95% Complete — All Components, Demo App, Storybook & Demo Deployed
 > **Project**: Showcase Project 2 of 3 (Upwork Portfolio)
 
 ---
@@ -57,7 +58,7 @@ Project 2 of the Showcase Projects suite for Upwork portfolio. This project demo
 | 5 | **Components** | Custom (not Material wrappers) | Demonstrates component authoring skill, not just Material usage |
 | 6 | **Packaging** | ng-packagr (FESM2022) | NPM-publishable library format |
 | 7 | **Testing** | Jest with host component pattern | Signal-aware testing |
-| 8 | **CI/CD** | GitHub Actions with Nx Cloud | Distributed caching and parallelism |
+| 8 | **CI/CD** | GitHub Actions → GitHub Pages (Storybook) + Vercel (Demo) | Free, automated deployments |
 
 ---
 
@@ -67,9 +68,9 @@ Project 2 of the Showcase Projects suite for Upwork portfolio. This project demo
 
 **Layout (4)**: Container, Grid, Card, Divider
 **Navigation (3)**: Breadcrumbs, Tabs, Stepper
-**Data Display (6)**: Data Table, Badge, Avatar, Skeleton, Stat Card, Empty State
+**Data Display (7)**: Data Table, Badge, Avatar, Skeleton, Stat Card, Empty State, Progress Bar
 **Forms (3)**: Input, Select, Textarea
-**Feedback (4)**: Toast, Modal, Confirm Dialog, Progress Bar
+**Feedback (3)**: Toast, Modal, Confirm Dialog
 
 ### Each Component Includes
 
@@ -104,7 +105,7 @@ Project 2 of the Showcase Projects suite for Upwork portfolio. This project demo
 | Storybook Addons | Docs, A11y | — |
 | Testing | Jest + jest-preset-angular | 30.0.2 / 16.0.0 |
 | Linting | ESLint + Angular ESLint + Prettier | 9.39.3 / 21.0.1 / 3.6.2 |
-| Package Manager | PNPM | — |
+| Package Manager | PNPM | 10.22.0 |
 
 ### Workspace Structure
 
@@ -117,12 +118,19 @@ angular-component-library/
 │   │   └── index.ts                  # Public API
 │   ├── .storybook/                   # Storybook config
 │   └── ng-package.json               # Library build config
-├── apps/demo/                        # Demo app consuming the library
+├── apps/demo/                        # Demo app (Acme HQ admin panel)
+│   └── src/app/
+│       ├── pages/                    # Dashboard, Team, Projects, Settings, Catalog
+│       └── shared/                   # Layout (sidebar, header), services, mock data
 ├── dist/
 │   ├── libs/ui/                      # Built library (FESM2022 + types)
+│   ├── apps/demo/                    # Built demo app
 │   └── storybook/ui/                 # Static Storybook build
-├── .github/workflows/ci.yml          # CI pipeline
+├── .github/workflows/ci.yml          # CI + Storybook deploy to GitHub Pages
+├── vercel.json                        # Demo app deployment config
 ├── nx.json                           # Nx workspace config
+├── README.md                         # Professional README with badges & Mermaid diagram
+├── LICENSE                           # MIT License
 └── package.json
 ```
 
@@ -190,19 +198,19 @@ angular-component-library/
 | 7 | Stepper | Navigation | .ts, .scss, .spec, .stories | ✅ Complete |
 | 8 | Data Table | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
 | 9 | Badge | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
-| 10 | Avatar | Data Display | .ts, .scss, .spec, .stories | ⚠️ Placeholder |
-| 11 | Skeleton | Data Display | .ts, .scss, .spec, .stories | ⚠️ Placeholder |
+| 10 | Avatar | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
+| 11 | Skeleton | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
 | 12 | Stat Card | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
 | 13 | Empty State | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
-| 14 | Input | Form | .ts, .scss, .spec, .stories | ✅ Complete |
-| 15 | Select | Form | .ts, .scss, .spec, .stories | ✅ Complete |
-| 16 | Textarea | Form | .ts, .scss, .spec, .stories | ✅ Complete |
-| 17 | Toast | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
-| 18 | Modal | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
-| 19 | Confirm Dialog | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
-| 20 | Progress Bar | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
+| 14 | Progress Bar | Data Display | .ts, .scss, .spec, .stories | ✅ Complete |
+| 15 | Input | Form | .ts, .scss, .spec, .stories | ✅ Complete |
+| 16 | Select | Form | .ts, .scss, .spec, .stories | ✅ Complete |
+| 17 | Textarea | Form | .ts, .scss, .spec, .stories | ✅ Complete |
+| 18 | Toast | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
+| 19 | Modal | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
+| 20 | Confirm Dialog | Feedback | .ts, .scss, .spec, .stories | ✅ Complete |
 
-**18/20 fully implemented, 2 placeholder**
+**20/20 fully implemented**
 
 ---
 
@@ -216,18 +224,18 @@ angular-component-library/
 │   │   ├── index.ts                             # Public API exports (all 20 components)
 │   │   │
 │   │   ├── lib/
-│   │   │   ├── badge/
-│   │   │   │   ├── badge.component.ts           # Variants, sizes, removable
-│   │   │   │   ├── badge.component.scss
-│   │   │   │   ├── badge.component.spec.ts      # 9 test cases
-│   │   │   │   ├── badge.component.stories.ts   # 4 stories
-│   │   │   │   └── index.ts
-│   │   │   │
-│   │   │   ├── avatar/                          # (placeholder — needs completion)
+│   │   │   ├── avatar/
 │   │   │   │   ├── avatar.component.ts
 │   │   │   │   ├── avatar.component.scss
 │   │   │   │   ├── avatar.component.spec.ts
 │   │   │   │   ├── avatar.component.stories.ts
+│   │   │   │   └── index.ts
+│   │   │   │
+│   │   │   ├── badge/
+│   │   │   │   ├── badge.component.ts
+│   │   │   │   ├── badge.component.scss
+│   │   │   │   ├── badge.component.spec.ts
+│   │   │   │   ├── badge.component.stories.ts
 │   │   │   │   └── index.ts
 │   │   │   │
 │   │   │   ├── breadcrumbs/                     # Same 5-file pattern
@@ -242,7 +250,7 @@ angular-component-library/
 │   │   │   ├── modal/
 │   │   │   ├── progress-bar/
 │   │   │   ├── select/
-│   │   │   ├── skeleton/                        # (placeholder — needs completion)
+│   │   │   ├── skeleton/
 │   │   │   ├── stat-card/
 │   │   │   ├── stepper/
 │   │   │   ├── tabs/
@@ -277,25 +285,56 @@ angular-component-library/
 │   ├── tsconfig.lib.json
 │   └── tsconfig.lib.prod.json
 │
-├── apps/demo/                                   # Demo application
+├── apps/demo/                                   # Demo application (Acme HQ)
 │   ├── src/
-│   │   ├── app/app.component.ts
+│   │   ├── app/
+│   │   │   ├── app.ts                           # Root component (app shell)
+│   │   │   ├── app.html                         # Shell template (sidebar + header + router)
+│   │   │   ├── app.scss                         # Shell styles
+│   │   │   ├── app.routes.ts                    # Lazy-loaded routes (5 pages)
+│   │   │   ├── app.config.ts                    # App configuration
+│   │   │   ├── app.spec.ts                      # App test
+│   │   │   │
+│   │   │   ├── pages/
+│   │   │   │   ├── dashboard/                   # KPI stats, activity feed, project progress
+│   │   │   │   ├── team/                        # Team member cards, search, filter, CRUD
+│   │   │   │   ├── projects/                    # Project cards, stepper, progress bars
+│   │   │   │   ├── settings/                    # Tabbed settings (profile, prefs, notifications)
+│   │   │   │   └── components/                  # Full catalog of all 20 components
+│   │   │   │
+│   │   │   └── shared/
+│   │   │       ├── layout/
+│   │   │       │   ├── sidebar/                 # Navigation sidebar with collapse
+│   │   │       │   └── header/                  # Header with breadcrumbs, avatar, theme toggle
+│   │   │       ├── services/
+│   │   │       │   ├── theme.service.ts         # Light/dark theme management
+│   │   │       │   └── toast.service.ts         # Toast notification service
+│   │   │       └── data/
+│   │   │           └── mock-data.ts             # Team, projects, stats, activity data
+│   │   │
 │   │   ├── main.ts
-│   │   └── styles.scss
+│   │   ├── index.html
+│   │   ├── styles.scss
+│   │   └── test-setup.ts                        # Jest setup with matchMedia mock
+│   │
 │   └── project.json
 │
 ├── dist/
 │   ├── libs/ui/                                 # Built library (FESM2022 + types)
-│   └── storybook/ui/                            # Static Storybook (77 files, ~6.7MB)
+│   ├── apps/demo/browser/                       # Built demo app
+│   └── storybook/ui/                            # Static Storybook build
 │
 ├── coverage/libs/ui/                            # Jest coverage reports
 │
-├── .github/workflows/ci.yml                     # GitHub Actions CI/CD
+├── .github/workflows/ci.yml                     # CI + Storybook deploy to GitHub Pages
+├── vercel.json                                  # Demo app deployment to Vercel
+├── .npmrc                                       # pnpm settings (auto-install-peers=false)
 ├── nx.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── tsconfig.base.json
-├── README.md                                    # (generic Nx — needs replacement)
+├── README.md                                    # Professional README with badges & Mermaid diagram
+├── LICENSE                                      # MIT License
 └── .gitignore
 ```
 
@@ -360,8 +399,8 @@ angular-component-library/
 
 ## Phase 4: Data Display Components
 
-**Goal**: 6 data display components
-**Status**: 🔄 4/6 Complete, 2 Placeholder
+**Goal**: 7 data display components
+**Status**: ✅ COMPLETE
 
 ### Tasks
 
@@ -369,27 +408,13 @@ angular-component-library/
 |------|--------|---------|
 | Data Table component | ✅ Done | Sorting, pagination, striped, empty state |
 | Badge component | ✅ Done | 5 variants, 3 sizes, removable |
+| Avatar component | ✅ Done | Image/initials fallback, 4 sizes |
+| Skeleton component | ✅ Done | text/circular/rectangular/rounded variants, pulse animation |
 | Stat Card component | ✅ Done | KPI with trend indicator |
 | Empty State component | ✅ Done | Icon + title + description + CTA |
-| Avatar component | ⚠️ Placeholder | Image/initials fallback — needs implementation |
-| Skeleton component | ⚠️ Placeholder | Loading placeholders — needs implementation |
-| Stories for complete ones | ✅ Done | CSF3 with Controls |
-| Tests for complete ones | ✅ Done | Host component pattern |
-
-### Remaining Work
-
-**Avatar** (estimated 2-3 hours):
-- Image with fallback to initials
-- 4 sizes (xs, sm, md, lg)
-- Rounded shape
-- Status indicator dot
-- ARIA: role="img", aria-label
-
-**Skeleton** (estimated 2-3 hours):
-- 3 variants: text, circular, rectangular
-- Pulse animation
-- Configurable width/height
-- Multiple lines support
+| Progress Bar component | ✅ Done | Determinate/indeterminate, striped, variants |
+| Stories for all 7 | ✅ Done | CSF3 with Controls |
+| Tests for all 7 | ✅ Done | Host component pattern |
 
 ---
 
@@ -413,7 +438,7 @@ angular-component-library/
 
 ## Phase 6: Feedback Components
 
-**Goal**: 4 feedback/overlay components
+**Goal**: 3 feedback/overlay components
 **Status**: ✅ COMPLETE
 
 ### Tasks
@@ -423,9 +448,8 @@ angular-component-library/
 | Toast component | ✅ Done | 5 variants, auto-dismiss, stacked |
 | Modal component | ✅ Done | 4 sizes, backdrop, escape key, scroll lock |
 | Confirm Dialog component | ✅ Done | Danger/warning patterns, confirm/cancel |
-| Progress Bar component | ✅ Done | Determinate/indeterminate, striped |
-| Stories for all 4 | ✅ Done | Interactive demos |
-| Tests for all 4 | ✅ Done | Open/close, event emission |
+| Stories for all 3 | ✅ Done | Interactive demos |
+| Tests for all 3 | ✅ Done | Open/close, event emission |
 
 ---
 
@@ -444,118 +468,84 @@ angular-component-library/
 | Theme decorator (light/dark/auto) | ✅ Done | Toolbar switcher |
 | Viewport presets (mobile/tablet/desktop) | ✅ Done | 4 viewports |
 | Welcome/introduction story | ✅ Done | Component showcase overview |
-| Static build | ✅ Done | dist/storybook/ui/ (77 files, ~6.7MB) |
+| Static build | ✅ Done | dist/storybook/ui/ |
 
 ---
 
 ## Phase 8: Testing & Coverage
 
 **Goal**: Jest tests for all components with 70%+ coverage
-**Status**: 🔄 In Progress
+**Status**: ✅ COMPLETE
 
 ### Tasks
 
 | Task | Status | Details |
 |------|--------|---------|
-| Jest configuration | ✅ Done | jest-preset-angular, coverage collection |
-| Badge tests (9 cases) | ✅ Done | Variants, sizes, removable |
-| Input tests | ✅ Done | Types, validation, binding |
-| Modal tests | ✅ Done | Open/close, escape, backdrop |
-| Card tests | ✅ Done | Variants, interactive |
-| Data Table tests | ✅ Done | Sort, pagination |
-| All other component tests | ✅ Done | Creation, inputs, events |
-| Coverage threshold enforcement | ❌ Not Done | Need to set and verify thresholds |
-| Generate coverage report | ✅ Done | coverage/libs/ui/ present |
+| Jest configuration | ✅ Done | jest-preset-angular, zoneless, coverage collection |
+| All 20 component tests | ✅ Done | Host component pattern, signal-based testing |
+| Demo app test | ✅ Done | App shell creation and rendering |
+| Coverage target met | ✅ Done | 98.36% statements, 100% lines (exceeds 70% target) |
+
+### Coverage Report
+
+| Metric | Value | Target |
+|--------|-------|--------|
+| Test Suites | 20 passed (ui) + 1 (demo) | — |
+| Total Tests | 224 passing | — |
+| Statement Coverage | 98.36% | 70% ✅ |
+| Branch Coverage | 88.31% | 70% ✅ |
+| Function Coverage | 98.61% | 70% ✅ |
+| Line Coverage | 100% | 70% ✅ |
 
 ---
 
 ## Phase 9: Deployment & Polish
 
-**Goal**: Live Storybook URL, Git repo, CI/CD
-**Status**: ❌ NOT STARTED
+**Goal**: Live URLs, Git repo, CI/CD
+**Status**: ✅ COMPLETE
 
 ### Tasks
 
 | Task | Status | Details |
 |------|--------|---------|
-| Initialize git repository | ❌ Not Done | No .git directory |
-| Create GitHub repo | ❌ Not Done | Need public repo |
-| Initial commit with clean history | ❌ Not Done | Conventional commits |
-| Vercel/Chromatic deployment config | ❌ Not Done | No vercel.json or chromatic config |
-| Deploy Storybook | ❌ Not Done | Static build ready, needs hosting |
-| Live demo URL | ❌ Not Done | — |
-| GitHub Actions CI verification | ⚠️ Config Ready | ci.yml exists but untested |
+| Initialize git repository | ✅ Done | Clean history with conventional commits |
+| Create GitHub repo | ✅ Done | github.com/jayampathiw/angular-component-library |
+| GitHub Actions CI pipeline | ✅ Done | Lint, test, build, Storybook build + deploy |
+| CI pipeline verified | ✅ Done | All jobs passing on push to main |
+| Deploy Storybook to GitHub Pages | ✅ Done | Auto-deploys via GitHub Actions |
+| Deploy Demo App to Vercel | ✅ Done | Auto-deploys on push to main |
+| `.npmrc` for CI compatibility | ✅ Done | auto-install-peers=false for frozen lockfile |
+| `packageManager` field in package.json | ✅ Done | pnpm@10.22.0 for CI pnpm resolution |
 
-### Deployment Options
+### Live URLs
 
-| Platform | Pros | Cons |
-|----------|------|------|
-| **Vercel** (Recommended) | Free, fast, proven from Dashboard | Need vercel.json |
-| **Chromatic** | Built for Storybook, visual testing | Requires Chromatic account |
-| **GitHub Pages** | Free, integrated with repo | Manual deploy setup |
-
-### Recommended Vercel Config
-
-```json
-{
-  "buildCommand": "pnpm build-storybook",
-  "outputDirectory": "dist/storybook/ui",
-  "framework": null
-}
-```
+| Deployment | URL | Platform |
+|------------|-----|----------|
+| **Demo App** | https://angular-component-library.vercel.app/dashboard | Vercel |
+| **Storybook** | https://jayampathiw.github.io/angular-component-library | GitHub Pages |
+| **Repository** | https://github.com/jayampathiw/angular-component-library | GitHub |
 
 ---
 
 ## Phase 10: Final Deliverables
 
 **Goal**: Professional README, Loom video, showcase-ready
-**Status**: ❌ NOT STARTED
+**Status**: 🔄 IN PROGRESS
 
 ### Tasks
 
 | Task | Status | Details |
 |------|--------|---------|
-| Custom README.md | ❌ Not Done | Currently generic Nx template |
-| Badges (Angular, Storybook, TypeScript, A11y, License) | ❌ Not Done | — |
-| Component catalog table | ❌ Not Done | All 20 components listed |
-| Architecture diagram (Mermaid) | ❌ Not Done | Nx workspace structure |
-| Installation guide | ❌ Not Done | `npm install @showcase/ui` |
-| Design token documentation | ❌ Not Done | Color, spacing, typography reference |
-| Screenshots (Storybook UI) | ❌ Not Done | 2-3 key screens |
-| MIT License | ❌ Not Done | Need LICENSE file |
-| Loom video (2-3 min) | ❌ Not Done | Storybook walkthrough + patterns |
-
-### README Structure
-
-```markdown
-# @showcase/ui — Angular Component Library
-
-> 20 enterprise-grade, accessible components with Angular 21, Signals, and design tokens.
-
-[Live Storybook](url) | [NPM Package](url)
-
-## Screenshots
-[Storybook overview, component examples]
-
-## Components (20)
-| Category | Components |
-|----------|-----------|
-| Layout | Container, Grid, Card, Divider |
-| Navigation | Breadcrumbs, Tabs, Stepper |
-| ...
-
-## Design Tokens
-Color, spacing, typography, shadows, transitions
-
-## Getting Started
-Prerequisites, install, usage example
-
-## Development
-pnpm storybook, pnpm test, pnpm build
-
-## Author
-Jayampathy Wijesena — links
-```
+| Professional README.md | ✅ Done | Badges, component catalog, Mermaid architecture diagram, tech stack, getting started |
+| MIT License | ✅ Done | LICENSE file added |
+| Badges (Angular, Storybook, Nx, Tests, Coverage, License) | ✅ Done | 7 badges in README |
+| Component catalog table | ✅ Done | All 20 components by category |
+| Architecture diagram (Mermaid) | ✅ Done | Nx workspace + deployment flow |
+| Design token documentation | ✅ Done | Color, spacing, typography, shape reference |
+| Demo app pages breakdown | ✅ Done | What each page demonstrates |
+| Quality metrics table | ✅ Done | Tests, coverage, story count |
+| Screenshots (Storybook + Demo) | ❌ Not Done | 2-3 key screens needed |
+| Loom video (2-3 min) | ❌ Not Done | Storybook walkthrough + demo app + architecture |
 
 ---
 
@@ -672,40 +662,49 @@ export const AllVariants: Story = { render: () => ({ template: `...` }) };
 - [x] Viewport switcher works (mobile/tablet/desktop)
 - [x] `pnpm build` — library builds (FESM2022 + types)
 - [x] `pnpm build-storybook` — static build succeeds
-- [x] `pnpm test` — all tests pass
-- [ ] Avatar component fully implemented (not placeholder)
-- [ ] Skeleton component fully implemented (not placeholder)
-- [ ] Coverage thresholds set and met (70%+)
-- [ ] Git repo initialized with clean history
-- [ ] Deployed to Vercel/Chromatic with live URL
-- [ ] Professional README with badges and screenshots
-- [ ] MIT License added
+- [x] `pnpm test` — all 224 tests pass
+- [x] All 20 components fully implemented
+- [x] Coverage exceeds 70% target (98%+ statements)
+- [x] Git repo with clean history on GitHub
+- [x] CI pipeline passing (lint, test, build, Storybook build)
+- [x] Storybook deployed to GitHub Pages
+- [x] Demo app deployed to Vercel
+- [x] Professional README with badges, Mermaid diagram, and docs
+- [x] MIT License added
+- [x] Demo app with 5 pages showcasing real-world component usage
+- [ ] Screenshots added to README (Storybook + Demo App)
 - [ ] Loom video recorded (2-3 minutes)
 
 ---
 
-## Estimated Remaining Work
+## Remaining Work
 
 | Task | Effort |
 |------|--------|
-| Complete Avatar component | 2-3 hours |
-| Complete Skeleton component | 2-3 hours |
-| Git init + GitHub repo | 30 min |
-| Custom README | 1-2 hours |
-| Vercel deployment | 30 min |
-| Coverage verification | 1 hour |
-| Screenshots | 30 min |
-| Loom video | 1 hour |
-| **Total** | **~8-10 hours** |
+| Screenshots for README | 30 min |
+| Loom video script + recording | 1-2 hours |
+| **Total** | **~1.5-2.5 hours** |
+
+---
+
+## Demo App Pages
+
+| Page | Route | Components Showcased |
+|------|-------|---------------------|
+| **Dashboard** | `/dashboard` | StatCard, Grid, Card, ProgressBar, Avatar, Badge, Skeleton, Divider |
+| **Team** | `/team` | Avatar, Badge, Input, Select, Modal, ConfirmDialog, EmptyState, Container |
+| **Projects** | `/projects` | Card, Grid, Stepper, ProgressBar, Badge, Avatar, Divider |
+| **Settings** | `/settings` | Tabs, Input, Select, Textarea, Card, Divider, Container |
+| **Component Catalog** | `/components` | All 20 components with all variants |
 
 ---
 
 ## NPM Scripts
 
 ```bash
-pnpm start              # Serve demo app
+pnpm start              # Serve demo app (localhost:4200)
 pnpm build              # Build library (dist/libs/ui/)
-pnpm build:demo         # Build demo app
+pnpm build:demo         # Build demo app (dist/apps/demo/)
 pnpm test               # Run all tests
 pnpm test:ui            # Run library tests only
 pnpm lint               # ESLint + Prettier check

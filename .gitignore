@@ -34,6 +34,7 @@ yarn-error.log
 testem.log
 /typings
 
+
 # System Files
 .DS_Store
 Thumbs.db
@@ -44,3 +45,16 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 .angular
+
+# AI tool configs
+CLAUDE.md
+AGENTS.md
+.claude/
+.codex/
+.gemini/
+.opencode/
+opencode.json
+.env
+
+# other files
+IMPLEMENTATION-PLAN.md
