@@ -1,0 +1,22 @@
+// Import @showcase/ui design tokens and base styles
+@use 'tokens';
+
+// ---------------------------------------------------------------------------
+// Base Reset
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ui-font-sans);
+  font-size: var(--ui-text-base);
+  line-height: var(--ui-leading-normal);
+  color: var(--ui-color-on-surface);
+  background-color: var(--ui-color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

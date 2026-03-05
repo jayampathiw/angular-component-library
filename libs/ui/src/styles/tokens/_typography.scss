@@ -1,0 +1,46 @@
+// =============================================================================
+// Typography Tokens — @showcase/ui
+// =============================================================================
+// Type scale and font settings.
+//
+// Usage:
+//   font-size: var(--ui-text-sm);
+//   font-weight: var(--ui-font-semibold);
+//   line-height: var(--ui-leading-normal);
+// =============================================================================
+
+:root {
+  // Font families
+  --ui-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --ui-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas,
+    monospace;
+
+  // Font sizes
+  --ui-text-xs: 0.75rem; // 12px
+  --ui-text-sm: 0.875rem; // 14px
+  --ui-text-base: 1rem; // 16px
+  --ui-text-lg: 1.125rem; // 18px
+  --ui-text-xl: 1.25rem; // 20px
+  --ui-text-2xl: 1.5rem; // 24px
+  --ui-text-3xl: 1.875rem; // 30px
+  --ui-text-4xl: 2.25rem; // 36px
+
+  // Font weights
+  --ui-font-normal: 400;
+  --ui-font-medium: 500;
+  --ui-font-semibold: 600;
+  --ui-font-bold: 700;
+
+  // Line heights
+  --ui-leading-none: 1;
+  --ui-leading-tight: 1.25;
+  --ui-leading-snug: 1.375;
+  --ui-leading-normal: 1.5;
+  --ui-leading-relaxed: 1.625;
+
+  // Letter spacing
+  --ui-tracking-tight: -0.025em;
+  --ui-tracking-normal: 0;
+  --ui-tracking-wide: 0.025em;
+}

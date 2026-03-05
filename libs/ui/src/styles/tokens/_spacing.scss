@@ -1,0 +1,61 @@
+// =============================================================================
+// Spacing Tokens — @showcase/ui
+// =============================================================================
+// Consistent spacing scale based on 4px grid.
+//
+// Usage:
+//   padding: var(--ui-space-4);        /* 16px */
+//   gap: var(--ui-space-3);            /* 12px */
+//   margin-bottom: var(--ui-space-6);  /* 24px */
+// =============================================================================
+
+:root {
+  // Base scale (4px increments)
+  --ui-space-0: 0;
+  --ui-space-px: 1px;
+  --ui-space-0-5: 2px;
+  --ui-space-1: 4px;
+  --ui-space-1-5: 6px;
+  --ui-space-2: 8px;
+  --ui-space-2-5: 10px;
+  --ui-space-3: 12px;
+  --ui-space-3-5: 14px;
+  --ui-space-4: 16px;
+  --ui-space-5: 20px;
+  --ui-space-6: 24px;
+  --ui-space-7: 28px;
+  --ui-space-8: 32px;
+  --ui-space-9: 36px;
+  --ui-space-10: 40px;
+  --ui-space-12: 48px;
+  --ui-space-14: 56px;
+  --ui-space-16: 64px;
+  --ui-space-20: 80px;
+  --ui-space-24: 96px;
+
+  // Semantic spacing
+  --ui-space-component-padding-x: var(--ui-space-4);
+  --ui-space-component-padding-y: var(--ui-space-2-5);
+  --ui-space-card-padding: var(--ui-space-6);
+  --ui-space-section-gap: var(--ui-space-8);
+  --ui-space-page-padding: var(--ui-space-8);
+}
+
+// Shape tokens (border-radius)
+:root {
+  --ui-radius-none: 0;
+  --ui-radius-xs: 4px;
+  --ui-radius-sm: 6px;
+  --ui-radius-md: 8px;
+  --ui-radius-lg: 12px;
+  --ui-radius-xl: 16px;
+  --ui-radius-2xl: 24px;
+  --ui-radius-full: 9999px;
+
+  // Semantic radius
+  --ui-radius-button: var(--ui-radius-md);
+  --ui-radius-card: var(--ui-radius-lg);
+  --ui-radius-input: var(--ui-radius-md);
+  --ui-radius-badge: var(--ui-radius-full);
+  --ui-radius-dialog: var(--ui-radius-xl);
+}

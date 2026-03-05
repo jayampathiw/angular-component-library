@@ -1,0 +1,43 @@
+// =============================================================================
+// Transition Tokens — @showcase/ui
+// =============================================================================
+// Animation and transition presets.
+//
+// Usage:
+//   transition: var(--ui-transition-colors);
+//   transition-duration: var(--ui-duration-normal);
+// =============================================================================
+
+:root {
+  // Durations
+  --ui-duration-fast: 100ms;
+  --ui-duration-normal: 200ms;
+  --ui-duration-slow: 300ms;
+  --ui-duration-slower: 500ms;
+
+  // Easings
+  --ui-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ui-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ui-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ui-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ui-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  // Shorthand transitions
+  --ui-transition-colors: color var(--ui-duration-normal) var(--ui-ease-default),
+    background-color var(--ui-duration-normal) var(--ui-ease-default),
+    border-color var(--ui-duration-normal) var(--ui-ease-default);
+  --ui-transition-opacity: opacity var(--ui-duration-normal) var(--ui-ease-default);
+  --ui-transition-shadow: box-shadow var(--ui-duration-normal) var(--ui-ease-default);
+  --ui-transition-transform: transform var(--ui-duration-normal) var(--ui-ease-default);
+  --ui-transition-all: all var(--ui-duration-normal) var(--ui-ease-default);
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ui-duration-fast: 0ms;
+    --ui-duration-normal: 0ms;
+    --ui-duration-slow: 0ms;
+    --ui-duration-slower: 0ms;
+  }
+}

@@ -1,0 +1,50 @@
+// @showcase/ui — Styles Entry Point
+// Import this file in consuming apps to get all design tokens and base styles.
+//
+// Usage in app styles.scss:
+//   @use '@showcase/ui/styles';
+
+@use 'tokens';
+
+// ---------------------------------------------------------------------------
+// Base Reset (minimal, opinionated)
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ui-font-sans);
+  font-size: var(--ui-text-base);
+  line-height: var(--ui-leading-normal);
+  color: var(--ui-color-on-surface);
+  background-color: var(--ui-color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ---------------------------------------------------------------------------
+// Focus visible utility
+// ---------------------------------------------------------------------------
+.ui-focus-ring:focus-visible {
+  outline: var(--ui-ring-width) solid var(--ui-ring-color);
+  outline-offset: var(--ui-ring-offset);
+}
+
+// ---------------------------------------------------------------------------
+// Screen reader only utility
+// ---------------------------------------------------------------------------
+.ui-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

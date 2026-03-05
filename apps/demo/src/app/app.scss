@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.demo-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--ui-color-border, #e0e0e0);
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ui-color-on-surface, #1a1a2e);
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    color: var(--ui-color-on-surface-variant, #64748b);
+  }
+}
+
+.demo-content {
+  flex: 1;
+  padding: 32px;
+}

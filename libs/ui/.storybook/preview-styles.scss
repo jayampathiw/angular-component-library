@@ -1,0 +1,38 @@
+// Storybook preview styles — loads design tokens
+@use '../src/styles/tokens';
+
+// Base styles for Storybook canvas
+body {
+  margin: 0;
+  font-family: var(--ui-font-sans);
+  font-size: var(--ui-text-base);
+  line-height: var(--ui-leading-normal);
+  color: var(--ui-color-on-surface);
+  background-color: var(--ui-color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Storybook story container padding
+.sb-show-main.sb-main-padded {
+  padding: 2rem;
+}
+
+// Focus ring utility
+.ui-focus-ring:focus-visible {
+  outline: var(--ui-ring-width) solid var(--ui-ring-color);
+  outline-offset: var(--ui-ring-offset);
+}
+
+// Screen reader only
+.ui-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -1,0 +1,86 @@
+@keyframes progress-indeterminate {
+  0% {
+    left: -30%;
+    width: 30%;
+  }
+  50% {
+    width: 40%;
+  }
+  100% {
+    left: 100%;
+    width: 30%;
+  }
+}
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  font-family: var(--ui-font-family);
+}
+
+.ui-progress-bar__track {
+  flex: 1;
+  background: var(--ui-color-surface-container);
+  border-radius: var(--ui-radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+// Sizes
+:host(.ui-progress-bar--sm) .ui-progress-bar__track {
+  height: 4px;
+}
+
+:host(.ui-progress-bar--md) .ui-progress-bar__track {
+  height: 8px;
+}
+
+:host(.ui-progress-bar--lg) .ui-progress-bar__track {
+  height: 12px;
+}
+
+.ui-progress-bar__fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width var(--ui-duration-normal) var(--ui-ease-out);
+  min-width: 0;
+
+  &--indeterminate {
+    position: absolute;
+    animation: progress-indeterminate 1.5s ease-in-out infinite;
+  }
+}
+
+// Variants
+:host(.ui-progress-bar--primary) .ui-progress-bar__fill {
+  background: var(--ui-color-primary);
+}
+
+:host(.ui-progress-bar--success) .ui-progress-bar__fill {
+  background: var(--ui-color-success);
+}
+
+:host(.ui-progress-bar--warning) .ui-progress-bar__fill {
+  background: var(--ui-color-warning);
+}
+
+:host(.ui-progress-bar--error) .ui-progress-bar__fill {
+  background: var(--ui-color-error);
+}
+
+.ui-progress-bar__label {
+  font-size: var(--ui-font-size-xs);
+  font-weight: var(--ui-font-weight-medium);
+  color: var(--ui-color-text-secondary);
+  min-width: 3ch;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-progress-bar__fill--indeterminate {
+    animation: none;
+    width: 50% !important;
+    left: 25%;
+  }
+}

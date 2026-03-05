@@ -1,0 +1,191 @@
+// =============================================================================
+// Color Tokens — @showcase/ui
+// =============================================================================
+// Semantic color system using CSS custom properties.
+// Components reference these tokens — never hardcoded hex values.
+//
+// Usage in components:
+//   color: var(--ui-color-primary);
+//   background: var(--ui-color-surface);
+// =============================================================================
+
+// ---------------------------------------------------------------------------
+// Light Theme (default)
+// ---------------------------------------------------------------------------
+:root,
+[data-theme='light'] {
+  // Brand
+  --ui-color-primary: #2563eb;
+  --ui-color-primary-hover: #1d4ed8;
+  --ui-color-primary-active: #1e40af;
+  --ui-color-primary-container: #dbeafe;
+  --ui-color-on-primary: #ffffff;
+  --ui-color-on-primary-container: #1e3a5f;
+
+  // Secondary
+  --ui-color-secondary: #7c3aed;
+  --ui-color-secondary-hover: #6d28d9;
+  --ui-color-secondary-container: #ede9fe;
+  --ui-color-on-secondary: #ffffff;
+  --ui-color-on-secondary-container: #3b1f6e;
+
+  // Surfaces
+  --ui-color-surface: #ffffff;
+  --ui-color-surface-dim: #f8fafc;
+  --ui-color-surface-container-lowest: #ffffff;
+  --ui-color-surface-container-low: #f8fafc;
+  --ui-color-surface-container: #f1f5f9;
+  --ui-color-surface-container-high: #e2e8f0;
+  --ui-color-surface-container-highest: #cbd5e1;
+
+  // On-surface (text)
+  --ui-color-on-surface: #0f172a;
+  --ui-color-on-surface-variant: #475569;
+  --ui-color-on-surface-muted: #94a3b8;
+
+  // Borders
+  --ui-color-border: #e2e8f0;
+  --ui-color-border-variant: #cbd5e1;
+  --ui-color-outline: #94a3b8;
+
+  // Status
+  --ui-color-success: #16a34a;
+  --ui-color-success-container: #dcfce7;
+  --ui-color-on-success: #ffffff;
+
+  --ui-color-warning: #d97706;
+  --ui-color-warning-container: #fef3c7;
+  --ui-color-on-warning: #ffffff;
+
+  --ui-color-error: #dc2626;
+  --ui-color-error-container: #fee2e2;
+  --ui-color-on-error: #ffffff;
+
+  --ui-color-info: #0284c7;
+  --ui-color-info-container: #e0f2fe;
+  --ui-color-on-info: #ffffff;
+
+  // Overlay
+  --ui-color-scrim: rgba(0, 0, 0, 0.5);
+  --ui-color-backdrop: rgba(15, 23, 42, 0.4);
+}
+
+// ---------------------------------------------------------------------------
+// Dark Theme
+// ---------------------------------------------------------------------------
+[data-theme='dark'] {
+  // Brand
+  --ui-color-primary: #60a5fa;
+  --ui-color-primary-hover: #93bbfd;
+  --ui-color-primary-active: #3b82f6;
+  --ui-color-primary-container: #1e3a5f;
+  --ui-color-on-primary: #0f172a;
+  --ui-color-on-primary-container: #dbeafe;
+
+  // Secondary
+  --ui-color-secondary: #a78bfa;
+  --ui-color-secondary-hover: #c4b5fd;
+  --ui-color-secondary-container: #3b1f6e;
+  --ui-color-on-secondary: #0f172a;
+  --ui-color-on-secondary-container: #ede9fe;
+
+  // Surfaces
+  --ui-color-surface: #0f172a;
+  --ui-color-surface-dim: #0b1120;
+  --ui-color-surface-container-lowest: #070d1a;
+  --ui-color-surface-container-low: #0f172a;
+  --ui-color-surface-container: #1e293b;
+  --ui-color-surface-container-high: #334155;
+  --ui-color-surface-container-highest: #475569;
+
+  // On-surface (text)
+  --ui-color-on-surface: #f1f5f9;
+  --ui-color-on-surface-variant: #94a3b8;
+  --ui-color-on-surface-muted: #64748b;
+
+  // Borders
+  --ui-color-border: #334155;
+  --ui-color-border-variant: #475569;
+  --ui-color-outline: #64748b;
+
+  // Status
+  --ui-color-success: #4ade80;
+  --ui-color-success-container: #14532d;
+  --ui-color-on-success: #0f172a;
+
+  --ui-color-warning: #fbbf24;
+  --ui-color-warning-container: #78350f;
+  --ui-color-on-warning: #0f172a;
+
+  --ui-color-error: #f87171;
+  --ui-color-error-container: #7f1d1d;
+  --ui-color-on-error: #0f172a;
+
+  --ui-color-info: #38bdf8;
+  --ui-color-info-container: #0c4a6e;
+  --ui-color-on-info: #0f172a;
+
+  // Overlay
+  --ui-color-scrim: rgba(0, 0, 0, 0.7);
+  --ui-color-backdrop: rgba(0, 0, 0, 0.6);
+}
+
+// System preference auto-detection
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    // Brand
+    --ui-color-primary: #60a5fa;
+    --ui-color-primary-hover: #93bbfd;
+    --ui-color-primary-active: #3b82f6;
+    --ui-color-primary-container: #1e3a5f;
+    --ui-color-on-primary: #0f172a;
+    --ui-color-on-primary-container: #dbeafe;
+
+    // Secondary
+    --ui-color-secondary: #a78bfa;
+    --ui-color-secondary-hover: #c4b5fd;
+    --ui-color-secondary-container: #3b1f6e;
+    --ui-color-on-secondary: #0f172a;
+    --ui-color-on-secondary-container: #ede9fe;
+
+    // Surfaces
+    --ui-color-surface: #0f172a;
+    --ui-color-surface-dim: #0b1120;
+    --ui-color-surface-container-lowest: #070d1a;
+    --ui-color-surface-container-low: #0f172a;
+    --ui-color-surface-container: #1e293b;
+    --ui-color-surface-container-high: #334155;
+    --ui-color-surface-container-highest: #475569;
+
+    // On-surface (text)
+    --ui-color-on-surface: #f1f5f9;
+    --ui-color-on-surface-variant: #94a3b8;
+    --ui-color-on-surface-muted: #64748b;
+
+    // Borders
+    --ui-color-border: #334155;
+    --ui-color-border-variant: #475569;
+    --ui-color-outline: #64748b;
+
+    // Status
+    --ui-color-success: #4ade80;
+    --ui-color-success-container: #14532d;
+    --ui-color-on-success: #0f172a;
+
+    --ui-color-warning: #fbbf24;
+    --ui-color-warning-container: #78350f;
+    --ui-color-on-warning: #0f172a;
+
+    --ui-color-error: #f87171;
+    --ui-color-error-container: #7f1d1d;
+    --ui-color-on-error: #0f172a;
+
+    --ui-color-info: #38bdf8;
+    --ui-color-info-container: #0c4a6e;
+    --ui-color-on-info: #0f172a;
+
+    // Overlay
+    --ui-color-scrim: rgba(0, 0, 0, 0.7);
+    --ui-color-backdrop: rgba(0, 0, 0, 0.6);
+  }
+}

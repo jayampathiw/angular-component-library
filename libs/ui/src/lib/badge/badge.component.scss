@@ -1,0 +1,91 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-font-weight-medium);
+  border-radius: var(--ui-radius-full);
+  white-space: nowrap;
+  vertical-align: middle;
+  transition: var(--ui-transition-colors);
+}
+
+// Sizes
+:host(.ui-badge--sm) {
+  font-size: var(--ui-font-size-xs);
+  padding: 1px var(--ui-space-2);
+  line-height: var(--ui-line-height-tight);
+}
+
+:host(.ui-badge--md) {
+  font-size: var(--ui-font-size-xs);
+  padding: var(--ui-space-0-5) var(--ui-space-2-5);
+  line-height: var(--ui-line-height-normal);
+}
+
+:host(.ui-badge--lg) {
+  font-size: var(--ui-font-size-sm);
+  padding: var(--ui-space-1) var(--ui-space-3);
+  line-height: var(--ui-line-height-normal);
+}
+
+// Variants
+:host(.ui-badge--neutral) {
+  background: var(--ui-color-surface-container);
+  color: var(--ui-color-text-secondary);
+}
+
+:host(.ui-badge--info) {
+  background: var(--ui-color-info-subtle);
+  color: var(--ui-color-info);
+}
+
+:host(.ui-badge--success) {
+  background: var(--ui-color-success-subtle);
+  color: var(--ui-color-success);
+}
+
+:host(.ui-badge--warning) {
+  background: var(--ui-color-warning-subtle);
+  color: var(--ui-color-warning);
+}
+
+:host(.ui-badge--error) {
+  background: var(--ui-color-error-subtle);
+  color: var(--ui-color-error);
+}
+
+.ui-badge__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+}
+
+.ui-badge__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 calc(-1 * var(--ui-space-0-5)) 0 0;
+  cursor: pointer;
+  font-size: 1.1em;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  transition: var(--ui-transition-colors);
+
+  &:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ui-focus-ring);
+  }
+}

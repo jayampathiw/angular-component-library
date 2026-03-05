@@ -1,0 +1,56 @@
+.ui-confirm-dialog__message {
+  font-size: var(--ui-font-size-sm);
+  color: var(--ui-color-text-secondary);
+  line-height: var(--ui-line-height-relaxed);
+  margin: 0;
+}
+
+.ui-confirm-dialog__actions {
+  display: flex;
+  gap: var(--ui-space-2);
+  justify-content: flex-end;
+}
+
+.ui-confirm-dialog__btn {
+  padding: var(--ui-space-2) var(--ui-space-4);
+  border-radius: var(--ui-radius-md);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-font-size-sm);
+  font-weight: var(--ui-font-weight-medium);
+  cursor: pointer;
+  transition: var(--ui-transition-colors);
+  border: none;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ui-focus-ring);
+  }
+
+  &--cancel {
+    background: var(--ui-color-surface);
+    color: var(--ui-color-text);
+    border: 1px solid var(--ui-color-border);
+
+    &:hover {
+      background: var(--ui-color-surface-hover);
+    }
+  }
+
+  &--confirm {
+    background: var(--ui-color-primary);
+    color: var(--ui-color-on-primary);
+
+    &:hover {
+      background: var(--ui-color-primary-hover);
+    }
+  }
+
+  &--danger {
+    background: var(--ui-color-error);
+    color: #fff;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

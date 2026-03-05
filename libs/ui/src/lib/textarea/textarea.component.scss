@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  font-family: var(--ui-font-family);
+}
+
+.ui-textarea-field__label {
+  display: block;
+  font-size: var(--ui-font-size-sm);
+  font-weight: var(--ui-font-weight-medium);
+  color: var(--ui-color-text);
+  margin-bottom: var(--ui-space-1-5);
+}
+
+.ui-textarea-field__required {
+  color: var(--ui-color-error);
+  margin-left: var(--ui-space-0-5);
+}
+
+.ui-textarea-field__textarea {
+  width: 100%;
+  background: var(--ui-color-surface);
+  border: 1px solid var(--ui-color-border);
+  border-radius: var(--ui-radius-md);
+  font-family: inherit;
+  color: var(--ui-color-text);
+  transition: var(--ui-transition-colors);
+  box-sizing: border-box;
+  line-height: var(--ui-line-height-normal);
+
+  &::placeholder {
+    color: var(--ui-color-text-muted);
+  }
+
+  &:hover:not(:disabled):not(:read-only) {
+    border-color: var(--ui-color-border-hover);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--ui-color-primary);
+    box-shadow: var(--ui-focus-ring);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--ui-color-surface-container-low);
+  }
+}
+
+// Sizes
+:host(.ui-textarea-field--sm) .ui-textarea-field__textarea {
+  padding: var(--ui-space-1-5) var(--ui-space-2-5);
+  font-size: var(--ui-font-size-xs);
+}
+
+:host(.ui-textarea-field--md) .ui-textarea-field__textarea {
+  padding: var(--ui-space-2) var(--ui-space-3);
+  font-size: var(--ui-font-size-sm);
+}
+
+:host(.ui-textarea-field--lg) .ui-textarea-field__textarea {
+  padding: var(--ui-space-2-5) var(--ui-space-4);
+  font-size: var(--ui-font-size-base);
+}
+
+// Error state
+:host(.ui-textarea-field--error) .ui-textarea-field__textarea {
+  border-color: var(--ui-color-error);
+}
+
+.ui-textarea-field__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--ui-space-2);
+  min-height: 1.5em;
+}
+
+.ui-textarea-field__error {
+  font-size: var(--ui-font-size-xs);
+  color: var(--ui-color-error);
+  margin: var(--ui-space-1) 0 0;
+}
+
+.ui-textarea-field__hint {
+  font-size: var(--ui-font-size-xs);
+  color: var(--ui-color-text-muted);
+  margin: var(--ui-space-1) 0 0;
+}
+
+.ui-textarea-field__counter {
+  font-size: var(--ui-font-size-xs);
+  color: var(--ui-color-text-muted);
+  margin-top: var(--ui-space-1);
+  flex-shrink: 0;
+
+  &--near-limit {
+    color: var(--ui-color-warning);
+  }
+}

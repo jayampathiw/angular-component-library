@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  border-radius: var(--ui-radius-card);
+  overflow: hidden;
+  transition: var(--ui-transition-shadow), var(--ui-transition-colors);
+}
+
+// Variants
+:host(.ui-card--elevated) {
+  background: var(--ui-color-surface);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+:host(.ui-card--outlined) {
+  background: var(--ui-color-surface);
+  border: 1px solid var(--ui-color-border);
+}
+
+:host(.ui-card--filled) {
+  background: var(--ui-color-surface-container);
+}
+
+// Interactive
+:host(.ui-card--interactive) {
+  cursor: pointer;
+}
+
+:host(.ui-card--interactive.ui-card--elevated:hover) {
+  box-shadow: var(--ui-shadow-md);
+}
+
+:host(.ui-card--interactive.ui-card--outlined:hover) {
+  border-color: var(--ui-color-primary);
+}
+
+:host(.ui-card--interactive.ui-card--filled:hover) {
+  background: var(--ui-color-surface-container-high);
+}
+
+// Sections
+.ui-card__header {
+  padding: var(--ui-space-card-padding) var(--ui-space-card-padding) 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.ui-card__body {
+  padding: var(--ui-space-card-padding);
+}
+
+.ui-card__footer {
+  padding: 0 var(--ui-space-card-padding) var(--ui-space-card-padding);
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+
+  &:empty {
+    display: none;
+  }
+}
+
+// No padding modifier
+:host(.ui-card--no-padding) {
+  .ui-card__header,
+  .ui-card__body,
+  .ui-card__footer {
+    padding: 0;
+  }
+}
