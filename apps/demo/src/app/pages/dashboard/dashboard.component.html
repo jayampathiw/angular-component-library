@@ -1,0 +1,98 @@
+<ui-container size="xl">
+  <div class="page-header">
+    <h1 class="page-title">Dashboard</h1>
+    <button class="skeleton-toggle" type="button" (click)="toggleSkeleton()">
+      {{ showSkeleton() ? 'Show Data' : 'Show Skeleton' }}
+    </button>
+  </div>
+
+  <!-- KPI Stats -->
+  @if (showSkeleton()) {
+    <ui-grid [columns]="4" gap="md">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <ui-card>
+          <ui-skeleton width="60%" height="14px" />
+          <ui-skeleton width="40%" height="28px" variant="rectangular" />
+          <ui-skeleton width="80%" height="12px" />
+        </ui-card>
+      }
+    </ui-grid>
+  } @else {
+    <ui-grid [columns]="4" gap="md">
+      @for (stat of stats; track stat.label) {
+        <ui-stat-card
+          [label]="stat.label"
+          [value]="stat.value"
+          [trend]="stat.trend"
+          [trendLabel]="stat.trendLabel"
+          [icon]="stat.icon"
+        />
+      }
+    </ui-grid>
+  }
+
+  <ui-divider spacing="lg" />
+
+  <!-- Lower section: Activity + Project Progress -->
+  <ui-grid [columns]="2" gap="lg">
+    <!-- Recent Activity -->
+    <ui-card>
+      <div card-header>
+        <h2 class="section-title">Recent Activity</h2>
+      </div>
+      @if (showSkeleton()) {
+        @for (i of [1, 2, 3, 4, 5]; track i) {
+          <div class="activity-item">
+            <ui-skeleton variant="circular" width="32px" height="32px" />
+            <div class="activity-item__text">
+              <ui-skeleton width="70%" height="14px" />
+              <ui-skeleton width="30%" height="12px" />
+            </div>
+          </div>
+        }
+      } @else {
+        @for (activity of activities; track activity.id; let last = $last) {
+          <div class="activity-item">
+            <ui-avatar [name]="activity.user" size="sm" />
+            <div class="activity-item__text">
+              <p class="activity-item__action">
+                <strong>{{ activity.user }}</strong> {{ activity.action }}
+                <span class="activity-item__target">{{ activity.target }}</span>
+              </p>
+              <span class="activity-item__time">{{ activity.time }}</span>
+            </div>
+          </div>
+          @if (!last) {
+            <ui-divider spacing="sm" />
+          }
+        }
+      }
+    </ui-card>
+
+    <!-- Project Progress -->
+    <ui-card>
+      <div card-header>
+        <h2 class="section-title">Project Progress</h2>
+      </div>
+      @for (project of projects; track project.id; let last = $last) {
+        <div class="project-item">
+          <div class="project-item__header">
+            <span class="project-item__name">{{ project.name }}</span>
+            <ui-badge [variant]="statusVariant(project.status)" size="sm">
+              {{ project.status }}
+            </ui-badge>
+          </div>
+          <ui-progress-bar
+            [value]="project.progress"
+            [showLabel]="true"
+            [variant]="project.progress === 100 ? 'success' : 'primary'"
+            size="sm"
+          />
+        </div>
+        @if (!last) {
+          <ui-divider spacing="sm" />
+        }
+      }
+    </ui-card>
+  </ui-grid>
+</ui-container>

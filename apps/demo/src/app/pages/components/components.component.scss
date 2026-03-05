@@ -1,0 +1,94 @@
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ui-color-on-surface);
+}
+
+.page-desc {
+  margin: 4px 0 0;
+  font-size: 0.875rem;
+  color: var(--ui-color-on-surface-variant);
+}
+
+.catalog-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ui-color-on-surface);
+}
+
+.component-row {
+  margin-bottom: 24px;
+}
+
+.component-name {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ui-color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.inline-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.demo-box {
+  padding: 16px;
+  background: var(--ui-color-surface-container);
+  border: 1px dashed var(--ui-color-border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ui-color-on-surface-variant);
+}
+
+.demo-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--ui-color-border);
+  border-radius: 8px;
+  background: var(--ui-color-surface);
+  color: var(--ui-color-on-surface);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: var(--ui-color-surface-container);
+    border-color: var(--ui-color-border-variant);
+  }
+}
+
+.skeleton-demos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-demos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+}
+
+:host ::ng-deep {
+  @media (max-width: 768px) {
+    ui-grid {
+      --grid-columns: 1 !important;
+    }
+  }
+}

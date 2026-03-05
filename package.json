@@ -12,6 +12,7 @@
     "storybook": "pnpm nx storybook ui",
     "build-storybook": "pnpm nx build-storybook ui"
   },
+  "packageManager": "pnpm@10.22.0",
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "~21.1.5",

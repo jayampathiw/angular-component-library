@@ -1,0 +1,123 @@
+<ui-container size="lg">
+  <div class="page-header">
+    <h1 class="page-title">Settings</h1>
+  </div>
+
+  <ui-card>
+    <ui-tabs ariaLabel="Settings sections">
+      <!-- Profile Tab -->
+      <ui-tab label="Profile">
+        <div class="tab-content">
+          <h2 class="section-title">Profile Information</h2>
+          <p class="section-desc">Update your personal details and public profile.</p>
+
+          <ui-divider spacing="sm" />
+
+          <div class="form-grid">
+            <ui-input
+              label="Full Name"
+              [(value)]="name"
+              [required]="true"
+              hint="This is how your name appears across the platform."
+            />
+            <ui-input
+              label="Email Address"
+              type="email"
+              [(value)]="email"
+              [required]="true"
+            />
+          </div>
+
+          <ui-textarea
+            label="Bio"
+            [(value)]="bio"
+            [rows]="4"
+            [maxLength]="280"
+            hint="Write a short introduction about yourself."
+          />
+
+          <div class="form-actions">
+            <button class="btn btn--primary" type="button" (click)="saveProfile()">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </ui-tab>
+
+      <!-- Preferences Tab -->
+      <ui-tab label="Preferences">
+        <div class="tab-content">
+          <h2 class="section-title">Preferences</h2>
+          <p class="section-desc">Customize your experience.</p>
+
+          <ui-divider spacing="sm" />
+
+          <div class="form-grid">
+            <ui-select
+              label="Timezone"
+              [options]="timezones"
+              [(value)]="timezone"
+            />
+            <ui-select
+              label="Language"
+              [options]="languages"
+              [(value)]="language"
+            />
+          </div>
+
+          <ui-divider spacing="sm" />
+
+          <div class="theme-setting">
+            <div class="theme-setting__info">
+              <span class="theme-setting__label">Theme</span>
+              <span class="theme-setting__desc">
+                Currently using {{ theme.theme() }} mode
+              </span>
+            </div>
+            <button class="btn btn--ghost" type="button" (click)="theme.toggle()">
+              Switch to {{ theme.theme() === 'light' ? 'Dark' : 'Light' }}
+            </button>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn--primary" type="button" (click)="savePreferences()">
+              Save Preferences
+            </button>
+          </div>
+        </div>
+      </ui-tab>
+
+      <!-- Notifications Tab -->
+      <ui-tab label="Notifications">
+        <div class="tab-content">
+          <h2 class="section-title">Notification Settings</h2>
+          <p class="section-desc">Control how and when you receive notifications.</p>
+
+          <ui-divider spacing="sm" />
+
+          <ui-select
+            label="Email Notifications"
+            [options]="notificationOptions"
+          />
+
+          <ui-select
+            label="Push Notifications"
+            [options]="notificationOptions"
+          />
+
+          <ui-textarea
+            label="Custom notification rules"
+            placeholder="Enter custom rules (one per line)..."
+            [rows]="3"
+          />
+
+          <div class="form-actions">
+            <button class="btn btn--primary" type="button" (click)="saveNotifications()">
+              Save Notification Settings
+            </button>
+          </div>
+        </div>
+      </ui-tab>
+    </ui-tabs>
+  </ui-card>
+</ui-container>

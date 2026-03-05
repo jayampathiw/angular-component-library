@@ -1,0 +1,236 @@
+<ui-container size="xl">
+  <div class="page-header">
+    <h1 class="page-title">Component Catalog</h1>
+    <p class="page-desc">All 20 components from &#64;showcase/ui</p>
+  </div>
+
+  <!-- ====== LAYOUT ====== -->
+  <section class="catalog-section">
+    <h2 class="section-title">Layout</h2>
+    <ui-divider spacing="sm" />
+
+    <div class="component-row">
+      <h3 class="component-name">Container</h3>
+      <ui-container size="md">
+        <div class="demo-box">Container (md) — max-width constrained</div>
+      </ui-container>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Grid</h3>
+      <ui-grid [columns]="3" gap="md">
+        <div class="demo-box">Col 1</div>
+        <div class="demo-box">Col 2</div>
+        <div class="demo-box">Col 3</div>
+      </ui-grid>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Card</h3>
+      <ui-grid [columns]="3" gap="md">
+        <ui-card variant="elevated">
+          <div card-header>Elevated</div>
+          Card content with shadow
+        </ui-card>
+        <ui-card variant="outlined">
+          <div card-header>Outlined</div>
+          Card content with border
+        </ui-card>
+        <ui-card variant="filled">
+          <div card-header>Filled</div>
+          Card content with fill
+        </ui-card>
+      </ui-grid>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Divider</h3>
+      <div>
+        <span>Above</span>
+        <ui-divider spacing="md" />
+        <span>Below (solid)</span>
+        <ui-divider spacing="md" [dashed]="true" />
+        <span>Below (dashed)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== NAVIGATION ====== -->
+  <section class="catalog-section">
+    <h2 class="section-title">Navigation</h2>
+    <ui-divider spacing="sm" />
+
+    <div class="component-row">
+      <h3 class="component-name">Breadcrumbs</h3>
+      <ui-breadcrumbs [items]="breadcrumbs" />
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Tabs</h3>
+      <ui-tabs ariaLabel="Demo tabs">
+        <ui-tab label="First">Content of the first tab panel.</ui-tab>
+        <ui-tab label="Second">Content of the second tab panel.</ui-tab>
+        <ui-tab label="Third">Content of the third tab panel.</ui-tab>
+        <ui-tab label="Disabled" [disabled]="true">You should not see this.</ui-tab>
+      </ui-tabs>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Stepper</h3>
+      <ui-stepper [steps]="stepperSteps" [activeStep]="1" />
+    </div>
+  </section>
+
+  <!-- ====== DATA DISPLAY ====== -->
+  <section class="catalog-section">
+    <h2 class="section-title">Data Display</h2>
+    <ui-divider spacing="sm" />
+
+    <div class="component-row">
+      <h3 class="component-name">Data Table</h3>
+      <ui-data-table
+        [columns]="tableColumns"
+        [data]="tableData"
+        [paginated]="true"
+        [pageSize]="3"
+        ariaLabel="Component catalog table"
+      />
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Badge</h3>
+      <div class="inline-row">
+        <ui-badge variant="neutral">Neutral</ui-badge>
+        <ui-badge variant="info">Info</ui-badge>
+        <ui-badge variant="success">Success</ui-badge>
+        <ui-badge variant="warning">Warning</ui-badge>
+        <ui-badge variant="error">Error</ui-badge>
+        <ui-badge variant="info" [removable]="true">Removable</ui-badge>
+      </div>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Avatar</h3>
+      <div class="inline-row">
+        <ui-avatar name="Sarah Chen" size="sm" />
+        <ui-avatar name="Marcus Johnson" size="md" />
+        <ui-avatar name="Aisha Patel" size="lg" />
+        <ui-avatar name="David Kim" size="xl" />
+      </div>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Skeleton</h3>
+      <div class="skeleton-demos">
+        <ui-skeleton width="100%" height="16px" variant="text" />
+        <ui-skeleton width="60%" height="16px" variant="text" />
+        <div class="inline-row">
+          <ui-skeleton variant="circular" width="40px" height="40px" />
+          <ui-skeleton variant="rectangular" width="200px" height="40px" />
+          <ui-skeleton variant="rounded" width="120px" height="40px" />
+        </div>
+      </div>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Stat Card</h3>
+      <ui-grid [columns]="3" gap="md">
+        <ui-stat-card label="Revenue" value="$42,500" [trend]="12" trendLabel="vs last month" icon="$" />
+        <ui-stat-card label="Users" value="1,234" [trend]="-3" trendLabel="vs last week" icon="#" />
+        <ui-stat-card label="Uptime" value="99.9%" icon="%" />
+      </ui-grid>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Empty State</h3>
+      <ui-empty-state
+        title="No results"
+        description="We couldn't find what you're looking for. Try a different search."
+        icon="&#x1F50E;"
+        actionLabel="Reset Search"
+        size="sm"
+      />
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Progress Bar</h3>
+      <div class="progress-demos">
+        <ui-progress-bar [value]="25" variant="primary" [showLabel]="true" />
+        <ui-progress-bar [value]="60" variant="warning" [showLabel]="true" />
+        <ui-progress-bar [value]="100" variant="success" [showLabel]="true" />
+        <ui-progress-bar [indeterminate]="true" variant="primary" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FORM CONTROLS ====== -->
+  <section class="catalog-section">
+    <h2 class="section-title">Form Controls</h2>
+    <ui-divider spacing="sm" />
+
+    <div class="component-row">
+      <h3 class="component-name">Input</h3>
+      <ui-grid [columns]="3" gap="md">
+        <ui-input label="Default" placeholder="Enter text..." />
+        <ui-input label="With hint" placeholder="name@example.com" hint="We'll never share your email." />
+        <ui-input label="With error" placeholder="Required field" error="This field is required" [required]="true" />
+      </ui-grid>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Select</h3>
+      <ui-grid [columns]="3" gap="md">
+        <ui-select label="Framework" [options]="selectOptions" placeholder="Choose one..." />
+        <ui-select label="Disabled" [options]="selectOptions" [disabled]="true" />
+        <ui-select label="With error" [options]="selectOptions" error="Selection required" />
+      </ui-grid>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Textarea</h3>
+      <ui-grid [columns]="2" gap="md">
+        <ui-textarea label="Description" placeholder="Write something..." [rows]="3" />
+        <ui-textarea label="With counter" placeholder="Limited input..." [rows]="3" [maxLength]="100" />
+      </ui-grid>
+    </div>
+  </section>
+
+  <!-- ====== FEEDBACK ====== -->
+  <section class="catalog-section">
+    <h2 class="section-title">Feedback</h2>
+    <ui-divider spacing="sm" />
+
+    <div class="component-row">
+      <h3 class="component-name">Toast</h3>
+      <div class="inline-row">
+        <button class="demo-btn" type="button" (click)="showToast('info')">Info Toast</button>
+        <button class="demo-btn" type="button" (click)="showToast('success')">Success Toast</button>
+        <button class="demo-btn" type="button" (click)="showToast('warning')">Warning Toast</button>
+        <button class="demo-btn" type="button" (click)="showToast('error')">Error Toast</button>
+      </div>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Modal</h3>
+      <button class="demo-btn" type="button" (click)="showModal.set(true)">Open Modal</button>
+      <ui-modal [(open)]="showModal" title="Example Modal" subtitle="This is a demo modal dialog.">
+        <p>Modal body content goes here. It supports any Angular content projection.</p>
+        <div modal-footer>
+          <button class="demo-btn" type="button" (click)="showModal.set(false)">Close</button>
+        </div>
+      </ui-modal>
+    </div>
+
+    <div class="component-row">
+      <h3 class="component-name">Confirm Dialog</h3>
+      <button class="demo-btn" type="button" (click)="showConfirm.set(true)">Open Confirm</button>
+      <ui-confirm-dialog
+        [(open)]="showConfirm"
+        title="Confirm Action"
+        message="Are you sure you want to proceed? This action cannot be undone."
+        variant="danger"
+        confirmLabel="Delete"
+      />
+    </div>
+  </section>
+</ui-container>

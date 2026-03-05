@@ -1,0 +1,94 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ui-color-on-surface);
+}
+
+.workflow-section {
+  margin-bottom: 8px;
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ui-color-on-surface);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ui-color-on-surface);
+}
+
+.project-desc {
+  margin: 0 0 16px;
+  font-size: 0.8125rem;
+  color: var(--ui-color-on-surface-variant);
+  line-height: 1.5;
+}
+
+.project-progress {
+  margin-bottom: 4px;
+}
+
+.project-progress__label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+  color: var(--ui-color-on-surface-variant);
+  font-weight: 500;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-team {
+  display: flex;
+  gap: 4px;
+}
+
+.project-due {
+  font-size: 0.75rem;
+  color: var(--ui-color-on-surface-muted);
+}
+
+.project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-step-label {
+  font-size: 0.75rem;
+  color: var(--ui-color-on-surface-variant);
+  font-weight: 500;
+}
+
+:host ::ng-deep {
+  @media (max-width: 768px) {
+    ui-grid {
+      --grid-columns: 1 !important;
+    }
+  }
+}

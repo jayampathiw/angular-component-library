@@ -1,0 +1,41 @@
+<aside class="sidebar" [class.sidebar--collapsed]="collapsed()">
+  <div class="sidebar__brand">
+    @if (!collapsed()) {
+      <span class="sidebar__logo">A</span>
+      <span class="sidebar__title">Acme HQ</span>
+    } @else {
+      <span class="sidebar__logo">A</span>
+    }
+  </div>
+
+  <nav class="sidebar__nav">
+    @for (item of navItems; track item.path) {
+      <a
+        class="sidebar__link"
+        [routerLink]="item.path"
+        routerLinkActive="sidebar__link--active"
+        [title]="item.label"
+      >
+        <span class="sidebar__icon" aria-hidden="true">{{ item.icon }}</span>
+        @if (!collapsed()) {
+          <span class="sidebar__label">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar__footer">
+    <button
+      class="sidebar__toggle-btn"
+      type="button"
+      (click)="toggle()"
+      [attr.aria-label]="collapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+    >
+      @if (collapsed()) {
+        &#x276F;
+      } @else {
+        &#x276E;
+      }
+    </button>
+  </div>
+</aside>

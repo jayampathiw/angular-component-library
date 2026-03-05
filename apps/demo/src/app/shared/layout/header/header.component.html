@@ -1,0 +1,29 @@
+<header class="header">
+  <div class="header__left">
+    <button
+      class="header__menu-btn"
+      type="button"
+      aria-label="Toggle menu"
+      (click)="menuToggled.emit()"
+    >
+      &#9776;
+    </button>
+    <ui-breadcrumbs [items]="breadcrumbs()" separator="/" />
+  </div>
+
+  <div class="header__right">
+    <button
+      class="header__theme-btn"
+      type="button"
+      [attr.aria-label]="theme.theme() === 'light' ? 'Switch to dark mode' : 'Switch to light mode'"
+      (click)="theme.toggle()"
+    >
+      @if (theme.theme() === 'light') {
+        &#9790;
+      } @else {
+        &#9728;
+      }
+    </button>
+    <ui-avatar name="Admin User" size="sm" />
+  </div>
+</header>

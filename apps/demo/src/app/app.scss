@@ -1,33 +1,35 @@
-:host {
-  display: block;
+.app-shell {
+  display: flex;
   min-height: 100vh;
 }
 
-.demo-shell {
-  min-height: 100vh;
+.app-shell__main {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
-.demo-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--ui-color-border, #e0e0e0);
-
-  h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--ui-color-on-surface, #1a1a2e);
-  }
-
-  p {
-    margin: 4px 0 0;
-    font-size: 0.875rem;
-    color: var(--ui-color-on-surface-variant, #64748b);
-  }
-}
-
-.demo-content {
+.app-shell__content {
   flex: 1;
-  padding: 32px;
+  padding: 24px;
+  overflow-y: auto;
+  background: var(--ui-color-surface-dim);
+}
+
+.toast-container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .app-shell__content {
+    padding: 16px;
+  }
 }

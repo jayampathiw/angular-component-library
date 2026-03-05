@@ -1,0 +1,62 @@
+<ui-container size="xl">
+  <div class="page-header">
+    <h1 class="page-title">Projects</h1>
+  </div>
+
+  <!-- Project Workflow Stepper -->
+  <div class="workflow-section">
+    <h2 class="section-title">Standard Workflow</h2>
+    <ui-stepper [steps]="workflowSteps" [activeStep]="2" [allowNavigation]="true" />
+  </div>
+
+  <ui-divider spacing="lg" />
+
+  <!-- Project Cards Grid -->
+  <ui-grid [columns]="2" gap="lg">
+    @for (project of projects; track project.id) {
+      <ui-card variant="outlined">
+        <div card-header>
+          <div class="project-header">
+            <h3 class="project-name">{{ project.name }}</h3>
+            <ui-badge [variant]="statusVariant(project.status)" size="sm">
+              {{ project.status }}
+            </ui-badge>
+          </div>
+        </div>
+
+        <p class="project-desc">{{ project.description }}</p>
+
+        <div class="project-progress">
+          <div class="project-progress__label">
+            <span>Progress</span>
+            <span>{{ project.progress }}%</span>
+          </div>
+          <ui-progress-bar
+            [value]="project.progress"
+            [variant]="progressVariant(project.progress)"
+            size="sm"
+          />
+        </div>
+
+        <ui-divider spacing="sm" />
+
+        <div class="project-meta">
+          <div class="project-team">
+            @for (member of project.team; track member) {
+              <ui-avatar [name]="member" size="sm" />
+            }
+          </div>
+          <span class="project-due">Due: {{ project.dueDate }}</span>
+        </div>
+
+        <div card-footer>
+          <div class="project-footer">
+            <span class="project-step-label">
+              Stage: {{ workflowSteps[statusToStep(project.status)]?.label ?? 'Unknown' }}
+            </span>
+          </div>
+        </div>
+      </ui-card>
+    }
+  </ui-grid>
+</ui-container>

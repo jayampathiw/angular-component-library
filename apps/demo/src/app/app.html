@@ -1,10 +1,22 @@
-<div class="demo-shell">
-  <header class="demo-header">
-    <h1>{{ title }}</h1>
-    <p>Interactive component playground</p>
-  </header>
+<div class="app-shell">
+  <demo-sidebar [(collapsed)]="sidebarCollapsed" />
 
-  <main class="demo-content">
-    <router-outlet />
-  </main>
+  <div class="app-shell__main">
+    <demo-header (menuToggled)="onMenuToggle()" />
+
+    <main class="app-shell__content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
+
+<!-- Global toast container -->
+<div class="toast-container">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <ui-toast
+      [message]="toast.message"
+      [variant]="toast.variant"
+      (dismissed)="toastService.dismiss(toast.id)"
+    />
+  }
 </div>

@@ -1,0 +1,101 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ui-color-on-surface);
+}
+
+.skeleton-toggle {
+  padding: 8px 16px;
+  border: 1px solid var(--ui-color-border);
+  border-radius: 8px;
+  background: var(--ui-color-surface);
+  color: var(--ui-color-on-surface);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--ui-color-surface-container);
+  }
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ui-color-on-surface);
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.activity-item__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-item__action {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ui-color-on-surface);
+  line-height: 1.4;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.activity-item__target {
+  color: var(--ui-color-primary);
+}
+
+.activity-item__time {
+  font-size: 0.75rem;
+  color: var(--ui-color-on-surface-muted);
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.project-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-item__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ui-color-on-surface);
+}
+
+// Responsive: stack stats 2 columns on tablet, 1 on mobile
+:host ::ng-deep {
+  @media (max-width: 1024px) {
+    ui-grid {
+      --grid-columns: 2 !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    ui-grid {
+      --grid-columns: 1 !important;
+    }
+  }
+}

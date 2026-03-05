@@ -1,0 +1,104 @@
+<ui-container size="xl">
+  <div class="page-header">
+    <h1 class="page-title">Team</h1>
+    <button class="btn btn--primary" type="button" (click)="openAddModal()">
+      + Add Member
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <ui-input
+      label="Search"
+      placeholder="Search by name, email, or role..."
+      [(value)]="searchQuery"
+    />
+    <ui-select
+      label="Department"
+      [options]="departments"
+      [(value)]="departmentFilter"
+    />
+  </div>
+
+  <!-- Team Table -->
+  @if (filteredMembers().length > 0) {
+    <div class="team-table-wrapper">
+      <div class="team-list">
+        @for (member of filteredMembers(); track member.id) {
+          <div class="team-card">
+            <div class="team-card__info">
+              <ui-avatar [name]="member.name" size="md" />
+              <div class="team-card__details">
+                <span class="team-card__name">{{ member.name }}</span>
+                <span class="team-card__role">{{ member.role }}</span>
+                <span class="team-card__email">{{ member.email }}</span>
+              </div>
+            </div>
+            <div class="team-card__meta">
+              <ui-badge [variant]="statusVariant(member.status)" size="sm">
+                {{ member.status }}
+              </ui-badge>
+              <span class="team-card__dept">{{ member.department }}</span>
+            </div>
+            <div class="team-card__actions">
+              <button
+                class="btn btn--ghost btn--sm"
+                type="button"
+                (click)="confirmDelete(member)"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <ui-empty-state
+      title="No team members found"
+      description="Try adjusting your search or filter criteria."
+      icon="&#x1F50D;"
+      actionLabel="Clear filters"
+      (action)="searchQuery.set(''); departmentFilter.set('')"
+    />
+  }
+</ui-container>
+
+<!-- Add Member Modal -->
+<ui-modal
+  [(open)]="showAddModal"
+  title="Add Team Member"
+  subtitle="Fill in the details to add a new member."
+  (closed)="onAddModalClosed()"
+>
+  <div class="modal-form">
+    <ui-input label="Full Name" placeholder="Enter full name" [required]="true" />
+    <ui-input label="Email" type="email" placeholder="name@acme.io" [required]="true" />
+    <ui-select
+      label="Department"
+      [options]="departments"
+      placeholder="Select department"
+    />
+  </div>
+  <div modal-footer>
+    <div class="modal-actions">
+      <button class="btn btn--ghost" type="button" (click)="showAddModal.set(false)">
+        Cancel
+      </button>
+      <button class="btn btn--primary" type="button" (click)="showAddModal.set(false)">
+        Add Member
+      </button>
+    </div>
+  </div>
+</ui-modal>
+
+<!-- Delete Confirmation -->
+<ui-confirm-dialog
+  [(open)]="showDeleteDialog"
+  title="Remove Team Member"
+  [message]="'Are you sure you want to remove ' + (selectedMember()?.name ?? '') + ' from the team?'"
+  confirmLabel="Remove"
+  variant="danger"
+  (confirmed)="onDeleteConfirmed()"
+  (cancelled)="onDeleteCancelled()"
+/>
